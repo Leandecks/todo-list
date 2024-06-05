@@ -1,5 +1,7 @@
 import "../sass/style.sass";
 
+const projects = [];
+
 function Project(title) {
 
     const todos = [];
@@ -18,6 +20,7 @@ function Project(title) {
         }
     }
 
+    projects.push({ title, todos });
     return { title, todos, addTodo, removeTodo };
 
 }
@@ -56,4 +59,9 @@ const toDo3 = defaultProject.addTodo(
     },
 );
 
-console.log(defaultProject);
+const privateTodos = Project("My Private Todos");
+
+privateTodos.addTodo("Load dishwasher");
+privateTodos.addTodo("Walk dog");
+
+console.log(projects);
