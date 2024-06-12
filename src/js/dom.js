@@ -3,6 +3,8 @@ import { Project, projects } from "./index";
 
 "use strict";
 
+// Examples
+
 const defaultProject = Project("My Projects");
 
 const toDo1 = defaultProject.addTodo(
@@ -41,3 +43,68 @@ privateTodos.addTodo("Load dishwasher");
 privateTodos.addTodo("Walk dog");
 
 console.log(projects);
+
+// Code for DOM
+
+function pushTodos(project) {
+
+    const todosDisplay = document.querySelector(".todos");
+
+    for (const todo of project.todos) {
+        const todoDiv = document.createElement("div");
+        todoDiv.classList.add("todo");
+        const todoTitle = document.createElement("p");
+        const todoDueDate = document.createElement("p");
+        let todoColor;
+
+        if (todo.priority === 1) {
+            todoDiv.style.background = "#339966";
+        } else if (todo.priority === 2) {
+            todoDiv.style.background = "#ffff33";
+        } else if (todo.priority === 3) {
+            todoDiv.style.background = "#ff3333";
+        } else {
+            todoDiv.style.background = "#fff";
+        }
+
+        todoTitle.textContent = todo.title;
+        todoDueDate.textContent = todo.dueDate;
+
+        todoDiv.appendChild(todoTitle);
+        todoDiv.appendChild(todoDueDate);
+
+        todosDisplay.appendChild(todoDiv);
+    }
+
+}
+
+// let currentProject;
+// let currentProjectPar
+
+function pushProject(project) {
+
+    const projectsDisplay = document.querySelector(".projects");
+    const todosDisplay = document.querySelector(".todos");
+
+    const projectPar = document.createElement("p");
+    projectPar.textContent = project.title;
+    projectsDisplay.appendChild(projectPar);
+
+    // let previousProject = currentProject;
+    // let previousProjectPar = currentProjectPar;
+    // currentProject = project;
+    // currentProjectPar = projectPar;
+
+
+    projectPar.addEventListener("click", () => {
+        todosDisplay.textContent = "";
+        // previousProjectPar.style.fontWeight = "normal";
+        pushTodos(project);
+        // currentProjectPar.style.fontWeight = "bold";
+    });
+
+}
+
+for (const project of projects) {
+    pushProject(project);
+}
