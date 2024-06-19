@@ -1,6 +1,5 @@
 import "../sass/style.sass";
 import { Project, projects } from "./index";
-
 "use strict";
 
 // Examples
@@ -46,6 +45,17 @@ console.log(projects);
 
 // Code for DOM
 
+document.addEventListener("DOMContentLoaded", () => {
+
+    pushProject(defaultProject);
+
+    const btn = document.querySelector(".addProjectBtn");
+    btn.addEventListener("click", () => {
+        addNewProject();
+    });
+
+});
+
 function pushTodos(project) {
 
     const todosDisplay = document.querySelector(".todos");
@@ -78,33 +88,48 @@ function pushTodos(project) {
 
 }
 
-// let currentProject;
-// let currentProjectPar
+let currentProject = projects[0];
 
 function pushProject(project) {
 
     const projectsDisplay = document.querySelector(".projects");
-    const todosDisplay = document.querySelector(".todos");
 
     const projectPar = document.createElement("p");
     projectPar.textContent = project.title;
     projectsDisplay.appendChild(projectPar);
 
-    // let previousProject = currentProject;
-    // let previousProjectPar = currentProjectPar;
-    // currentProject = project;
-    // currentProjectPar = projectPar;
-
+    selectProject(project)
 
     projectPar.addEventListener("click", () => {
-        todosDisplay.textContent = "";
-        // previousProjectPar.style.fontWeight = "normal";
-        pushTodos(project);
-        // currentProjectPar.style.fontWeight = "bold";
+       selectProject(project);
     });
 
 }
 
-for (const project of projects) {
-    pushProject(project);
+function selectProject(project) {
+
+    const projectsDisplay = document.querySelector(".projects");
+    const todosDisplay = document.querySelector(".todos");
+
+    for (const par of projectsDisplay.children) {
+        if (par.style.fontWeight === "bold") {
+            par.style.fontWeight = "normal";
+        }
+    }
+
+    currentProject = project;
+
+    for (const par of projectsDisplay.children) {
+        if (par.textContent === project.title) {
+            par.style.fontWeight = "bold";
+        }
+    }
+
+    todosDisplay.textContent = "";
+    pushTodos(project);
+
+}
+
+function addNewProject() {
+
 }
