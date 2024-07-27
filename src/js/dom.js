@@ -47,9 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     pushProject(defaultProject);
 
-    const btn = document.querySelector(".addProjectBtn");
-    btn.addEventListener("click", () => {
+    const addProjectBtn = document.querySelector(".addProjectBtn");
+    addProjectBtn.addEventListener("click", () => {
         addNewProject();
+    });
+
+    const addTodoBtn = document.querySelector(".addTodoBtn");
+    addTodoBtn.addEventListener("click", () => {
+        addNewTodo();
     });
 
 });
