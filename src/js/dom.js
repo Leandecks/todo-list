@@ -41,8 +41,6 @@ const privateTodos = Project("My Private Todos");
 privateTodos.addTodo("Load dishwasher");
 privateTodos.addTodo("Walk dog");
 
-console.log(projects);
-
 // Code for DOM
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -131,5 +129,55 @@ function selectProject(project) {
 }
 
 function addNewProject() {
+
+    const dialog = document.querySelector(".project-dialog");
+    const titleInput = document.querySelector("#project-title");
+    const submitButton = document.querySelector(".project-submit");
+    const closeButton = document.querySelector(".project-close");
+
+    titleInput.value = "";
+    dialog.showModal();
+
+    submitButton.addEventListener("click", submitted);
+
+    let projectTitles = [];
+
+    for (const p of projects) {
+        projectTitles.push(p.title);
+    }
+
+    console.log(projectTitles);
+
+    function submitted() {
+        if (titleInput.value === "") {
+            titleInput.value = "New Project";
+        }
+
+        console.log(titleInput.value);
+
+        while (projectTitles.includes(titleInput.value)) {
+            if (isNaN(titleInput.value.slice(-1)) === false) {
+                titleInput.value = titleInput.value.slice(0, titleInput.value.length - 1) + (Number(titleInput.value.slice(-1)) + 1);
+            } else {
+                titleInput.value = titleInput.value + " 1";
+            }
+        }
+
+        const newProject = Project(titleInput.value);
+        pushProject(newProject);
+        dialog.close();
+
+        submitButton.removeEventListener("click", submitted);
+    }
+
+    closeButton.addEventListener("click", () => {
+        dialog.close();
+    });
+
+}
+
+function addNewTodo(project) {
+
+
 
 }

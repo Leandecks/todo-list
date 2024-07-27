@@ -10,12 +10,31 @@
 </head>
 <body>
 
+
     <div class="sidebar">
         <p>Todo List :)</p>
         <div class="projects"></div>
         <button type="button" class="addProjectBtn">Add Project</button>
     </div>
     <div class="todos"></div>
+
+
+    <div class="dialog-wrapper">
+        <dialog role="alertdialog" aria-modal="true" class="project-dialog">
+            <form>
+                <h3>New Project</h3>
+                <label for="title">
+                    Title:
+                    <input type="text" name="title" id="project-title">
+                </label>
+            </form>
+            <div class="buttons">
+                <button type="submit" class="project-submit">Create</button>
+                <button type="reset" class="project-close">Cancel</button>
+            </div>
+        </dialog>
+    </div>
+
 
 </body>
 </html>
