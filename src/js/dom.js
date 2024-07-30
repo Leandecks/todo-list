@@ -1,4 +1,5 @@
 import { Project, projects } from "./project";
+import * as _ from "lodash";
 
 function pushTodos(project) {
 
@@ -140,12 +141,28 @@ function addNewTodo(project) {
 
     submitButton.addEventListener("click", submitted);
 
+    function formatListInput() {
+        const array = listInput.value.split(",");
+        const stripped = {};
+        for (let i = 0; i < array.length; i++) {
+            stripped[(_.trim(array[i]))] = false;
+        }
+        console.log(stripped);
+        return stripped;
+    }
+
     function submitted() {
         if (titleInput.value === "") {
             titleInput.value = "New To Do";
         }
 
-        const newTodo = currentProject.addTodo(titleInput.value, descInput.value, dueInput.value, prioInput.value, listInput.value);
+        const newTodo = currentProject.addTodo(
+            titleInput.value,
+            descInput.value,
+            dueInput.value,
+            isNaN(prioInput.value) ? "" : Number(prioInput.value),
+            formatListInput(listInput.value)
+        );
         pushTodos(currentProject);
         dialog.close();
 

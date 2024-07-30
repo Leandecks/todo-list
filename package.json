@@ -24,6 +24,7 @@
   "dependencies": {
     "css-loader": "^6.10.0",
     "html-webpack-plugin": "^5.6.0",
+    "lodash": "^4.17.21",
     "style-loader": "^3.3.4"
   }
 }
