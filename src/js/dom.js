@@ -1,67 +1,9 @@
-import "../sass/style.sass";
-import { Project, projects } from "./index";
-"use strict";
-
-// Examples
-
-const defaultProject = Project("My Projects");
-
-const toDo1 = defaultProject.addTodo(
-    "Learn Russian",
-    "Learn ypok 10 of russian",
-    "10/06/2024",
-    3,
-    {
-        "Learn vocab": false,
-        "Learn grammar": true,
-        "Do exercises": false,
-    },
-);
-
-const toDo2 = defaultProject.addTodo("Play piano",
-    "Play the piano again",
-    "23/07/2024",
-    1,
-);
-
-const toDo3 = defaultProject.addTodo(
-    "Code on project",
-    "Finish todo project",
-    "15/06/2024",
-    2,
-    {
-        "Console version": true,
-        "DOM connection": false,
-        "LocalStorage saving": false,
-    },
-);
-
-const privateTodos = Project("My Private Todos");
-
-privateTodos.addTodo("Load dishwasher");
-privateTodos.addTodo("Walk dog");
-
-// Code for DOM
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    pushProject(defaultProject);
-
-    const addProjectBtn = document.querySelector(".addProjectBtn");
-    addProjectBtn.addEventListener("click", () => {
-        addNewProject();
-    });
-
-    const addTodoBtn = document.querySelector(".addTodoBtn");
-    addTodoBtn.addEventListener("click", () => {
-        addNewTodo();
-    });
-
-});
+import { Project, projects } from "./project";
 
 function pushTodos(project) {
 
     const todosDisplay = document.querySelector(".todos");
+    todosDisplay.textContent = "";
 
     for (const todo of project.todos) {
         const todoDiv = document.createElement("div");
@@ -104,7 +46,7 @@ function pushProject(project) {
     selectProject(project)
 
     projectPar.addEventListener("click", () => {
-       selectProject(project);
+        selectProject(project);
     });
 
 }
@@ -151,14 +93,10 @@ function addNewProject() {
         projectTitles.push(p.title);
     }
 
-    console.log(projectTitles);
-
     function submitted() {
         if (titleInput.value === "") {
             titleInput.value = "New Project";
         }
-
-        console.log(titleInput.value);
 
         while (projectTitles.includes(titleInput.value)) {
             if (isNaN(titleInput.value.slice(-1)) === false) {
@@ -183,6 +121,41 @@ function addNewProject() {
 
 function addNewTodo(project) {
 
+    const dialog = document.querySelector(".todo-dialog");
+    const titleInput = document.querySelector("#todo-title");
+    const descInput = document.querySelector("#todo-description");
+    const dueInput = document.querySelector("#todo-due");
+    const prioInput = document.querySelector("#todo-priority");
+    const listInput = document.querySelector("#todo-checklist");
+    const submitButton = document.querySelector(".todo-submit");
+    const closeButton = document.querySelector(".todo-close");
 
+    titleInput.value = "";
+    descInput.value = "";
+    dueInput.value = "";
+    prioInput.value = "";
+    listInput.value = "";
+
+    dialog.showModal();
+
+    submitButton.addEventListener("click", submitted);
+
+    function submitted() {
+        if (titleInput.value === "") {
+            titleInput.value = "New To Do";
+        }
+
+        const newTodo = currentProject.addTodo(titleInput.value, descInput.value, dueInput.value, prioInput.value, listInput.value);
+        pushTodos(currentProject);
+        dialog.close();
+
+        submitButton.removeEventListener("click", submitted);
+    }
+
+    closeButton.addEventListener("click", () => {
+        dialog.close();
+    });
 
 }
+
+export { pushTodos, currentProject, pushProject, selectProject, addNewProject, addNewTodo };
