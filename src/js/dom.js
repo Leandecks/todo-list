@@ -8,10 +8,11 @@ function pushTodos(project) {
 
     for (const todo of project.todos) {
         const todoDiv = document.createElement("div");
-        todoDiv.classList.add("todo");
         const todoTitle = document.createElement("p");
         const todoDueDate = document.createElement("p");
         let todoColor;
+        const checkbox = document.createElement("input");
+        const remove = document.createElement("i");
 
         if (todo.priority === 1) {
             todoDiv.style.background = "#339966";
@@ -23,11 +24,24 @@ function pushTodos(project) {
             todoDiv.style.background = "#fff";
         }
 
+        todoDiv.classList.add("todo");
         todoTitle.textContent = todo.title;
         todoDueDate.textContent = todo.dueDate;
 
+        checkbox.type = "checkbox";
+        checkbox.classList.add("completed");
+
+        remove.classList.add("nf");
+        remove.classList.add("nf-md-delete");
+        remove.addEventListener("click", () => {
+            project.removeTodo(todo.title);
+            pushTodos(project);
+        });
+
+        todoDiv.appendChild(checkbox);
         todoDiv.appendChild(todoTitle);
         todoDiv.appendChild(todoDueDate);
+        todoDiv.appendChild(remove);
 
         todosDisplay.appendChild(todoDiv);
     }
@@ -147,7 +161,6 @@ function addNewTodo(project) {
         for (let i = 0; i < array.length; i++) {
             stripped[(_.trim(array[i]))] = false;
         }
-        console.log(stripped);
         return stripped;
     }
 
