@@ -11,8 +11,10 @@ function pushTodos(project) {
         const todoTitle = document.createElement("p");
         const todoDueDate = document.createElement("p");
         let todoColor;
+
         const checkbox = document.createElement("input");
-        const remove = document.createElement("i");
+        const deleteTodo = document.createElement("i");
+        const editTodo = document.createElement("i");
 
         if (todo.priority === 1) {
             todoDiv.style.background = "#339966";
@@ -31,17 +33,24 @@ function pushTodos(project) {
         checkbox.type = "checkbox";
         checkbox.classList.add("completed");
 
-        remove.classList.add("nf");
-        remove.classList.add("nf-md-delete");
-        remove.addEventListener("click", () => {
+        deleteTodo.classList.add("nf");
+        deleteTodo.classList.add("nf-md-delete");
+        deleteTodo.addEventListener("click", () => {
             project.removeTodo(todo.title);
             pushTodos(project);
+        });
+
+        editTodo.classList.add("nf");
+        editTodo.classList.add("nf-md-square_edit_outline");
+        editTodo.addEventListener("click", () => {
+            editCurrentTodo(todo);
         });
 
         todoDiv.appendChild(checkbox);
         todoDiv.appendChild(todoTitle);
         todoDiv.appendChild(todoDueDate);
-        todoDiv.appendChild(remove);
+        todoDiv.appendChild(deleteTodo);
+        todoDiv.appendChild(editTodo);
 
         todosDisplay.appendChild(todoDiv);
     }
@@ -144,6 +153,9 @@ function addNewTodo(project) {
     const listInput = document.querySelector("#todo-checklist");
     const submitButton = document.querySelector(".todo-submit");
     const closeButton = document.querySelector(".todo-close");
+    const dialogTitle = document.querySelector(".todo-dialog-title");
+
+    dialog.showModal();
 
     titleInput.value = "";
     descInput.value = "";
@@ -151,7 +163,8 @@ function addNewTodo(project) {
     prioInput.value = "";
     listInput.value = "";
 
-    dialog.showModal();
+    dialogTitle.textContent = "New To Do";
+    submitButton.textContent = "Create";
 
     submitButton.addEventListener("click", submitted);
 
@@ -179,6 +192,66 @@ function addNewTodo(project) {
         pushTodos(currentProject);
         dialog.close();
 
+        submitButton.removeEventListener("click", submitted);
+    }
+
+    closeButton.addEventListener("click", () => {
+        dialog.close();
+    });
+
+}
+
+function editCurrentTodo(todo) {
+
+    const dialog = document.querySelector(".todo-dialog");
+    const titleInput = document.querySelector("#todo-title");
+    const descInput = document.querySelector("#todo-description");
+    const dueInput = document.querySelector("#todo-due");
+    const prioInput = document.querySelector("#todo-priority");
+    const listInput = document.querySelector("#todo-checklist");
+    const submitButton = document.querySelector(".todo-submit");
+    const closeButton = document.querySelector(".todo-close");
+    const dialogTitle = document.querySelector(".todo-dialog-title");
+
+    dialog.showModal();
+
+    function objectToList(object) {
+        let string = "";
+        for (const objectElement in object) {
+            string += objectElement + ",";
+        }
+        return _.trim(string, ",");
+    }
+
+    dialogTitle.textContent = "Edit To Do";
+    submitButton.textContent = "Update";
+
+    titleInput.value = todo.title;
+    descInput.value = todo.description;
+    dueInput.value = todo.dueDate;
+    prioInput.value = todo.priority;
+    listInput.value = objectToList(todo.checklist);
+
+    submitButton.addEventListener("click", submitted);
+
+    function listToObject(string) {
+        const array = string.split(",");
+        const stripped = {};
+        for (let i = 0; i < array.length; i++) {
+            stripped[(_.trim(array[i]))] = false;
+        }
+        return stripped;
+    }
+
+    function submitted() {
+        todo.title = titleInput.value;
+        todo.description = descInput.value;
+        todo.dueDate = dueInput.value;
+        todo.priority = isNaN(prioInput.value) ? "" : Number(prioInput.value);
+        todo.checklist = listToObject(listInput.value);
+
+        pushTodos(currentProject);
+        dialog.close();
         submitButton.removeEventListener("click", submitted);
     }
 

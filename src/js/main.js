@@ -19,4 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
         addNewTodo();
     });
 
+    const todoCheckmark = document.querySelectorAll(".completed");
+    todoCheckmark.forEach(checkmark => {
+        checkmark.addEventListener("click", () => {
+           if (checkmark.checked) {
+               checkmark.nextElementSibling.style.textDecoration = "line-through";
+           } else {
+               checkmark.nextElementSibling.style.textDecoration = "none";
+           }
+        });
+    });
+
 });
