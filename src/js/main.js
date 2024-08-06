@@ -1,7 +1,7 @@
 import "../sass/style.sass";
-import { Project, projects } from "./project";
-import { defaultProject } from "./examples";
-import { pushTodos, currentProject, pushProject, selectProject, addNewProject, addNewTodo } from "./dom";
+import { defaultProject } from "./dom/examples";
+import { pushProject, addNewProject } from "./dom/domProjects";
+import { addNewTodo } from "./dom/domTodos";
 
 "use strict";
 
@@ -18,16 +18,5 @@ document.addEventListener("DOMContentLoaded", () => {
     addTodoBtn.addEventListener("click", () => {
         addNewTodo();
     });
-
-    const todoCheckmark = document.querySelectorAll(".completed");
-    todoCheckmark.forEach(checkmark => {
-        checkmark.addEventListener("click", () => {
-           if (checkmark.checked) {
-               checkmark.nextElementSibling.style.textDecoration = "line-through";
-           } else {
-               checkmark.nextElementSibling.style.textDecoration = "none";
-           }
-        });
-    });
-
+    
 });

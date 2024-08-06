@@ -6,8 +6,9 @@ function Project(title) {
 
     const todos = [];
 
-    function addTodo(title, description, dueDate, priority, checklist) {
-        const todo = { title, description, dueDate, priority, checklist };
+    function addTodo(title, description, dueDate, priority, checklist, completed) {
+        completed = false;
+        const todo = { title, description, dueDate, priority, checklist, completed };
         todos.push(todo);
         return todo;
     }

@@ -1,4 +1,4 @@
-import { Project } from "./project";
+import { Project } from "../project";
 
 const defaultProject = Project("My Projects");
 
