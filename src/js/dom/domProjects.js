@@ -81,9 +81,13 @@ function addNewProject() {
         submitButton.removeEventListener("click", submitted);
     }
 
-    closeButton.addEventListener("click", () => {
+    closeButton.addEventListener("click", closed)
+
+    function closed() {
         dialog.close();
-    });
+        submitButton.removeEventListener("click", submitted);
+        closeButton.removeEventListener("click", closed);
+    }
 
 }
 
