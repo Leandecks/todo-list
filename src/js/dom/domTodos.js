@@ -1,5 +1,6 @@
 import { currentProject } from "./domProjects";
 import * as _ from "lodash";
+import {format, parse} from "date-fns";
 
 function pushTodos(project) {
 
@@ -159,18 +160,25 @@ function editCurrentTodo(todo) {
         return stripped;
     }
 
+    function formatDate(date) {
+        if (date === "") {
+            return;
+        }
+        const defaultFormat = parse(date, "yyyy-MM-dd", new Date());
+        const preferredFormat = format(defaultFormat, "MM/dd/yyyy");
+        return preferredFormat;
+    }
+
     function submitted() {
         todo.title = titleInput.value;
         todo.description = descInput.value;
-        todo.dueDate = dueInput.value;
+        todo.dueDate = formatDate(dueInput.value);
         todo.priority = isNaN(prioInput.value) ? "" : Number(prioInput.value);
         todo.checklist = listToObject(listInput.value);
 
         pushTodos(currentProject);
         dialog.close();
         submitButton.removeEventListener("click", submitted);
-
-        console.log(currentProject);
     }
 
     closeButton.addEventListener("click", closed);
@@ -208,16 +216,25 @@ function addNewTodo() {
 
     submitButton.addEventListener("click", submitted);
 
-    function formatListInput() {
-        if (listInput.value === "") {
+    function formatListInput(list) {
+        if (list === "") {
             return undefined;
         }
-        const array = listInput.value.split(",");
+        const array = list.split(",");
         const stripped = {};
         for (let i = 0; i < array.length; i++) {
             stripped[(_.trim(array[i]))] = false;
         }
         return stripped;
+    }
+
+    function formatDate(date) {
+        if (date === "") {
+            return;
+        }
+        const defaultFormat = parse(date, "yyyy-MM-dd", new Date());
+        const preferredFormat = format(defaultFormat, "MM/dd/yyyy");
+        return preferredFormat;
     }
 
     function submitted() {
@@ -227,7 +244,7 @@ function addNewTodo() {
         currentProject.addTodo(
             titleInput.value,
             descInput.value,
-            dueInput.value,
+            formatDate(dueInput.value),
             isNaN(prioInput.value) ? "" : Number(prioInput.value),
             formatListInput(listInput.value)
         );
