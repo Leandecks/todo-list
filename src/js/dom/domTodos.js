@@ -1,6 +1,6 @@
 import { currentProject } from "./domProjects";
 import * as _ from "lodash";
-import {format, parse} from "date-fns";
+import { format, parse } from "date-fns";
 
 function pushTodos(project) {
 
