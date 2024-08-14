@@ -1,5 +1,5 @@
 import { Project, projects } from "../project";
-import {isDialogOpen, pushTodos, setIsDialogOpen} from "./domTodos";
+import { pushTodos, setIsDialogOpen} from "./domTodos";
 import { saveProjects } from "./localStorage";
 
 let currentProject = projects[0];
@@ -10,16 +10,42 @@ function setCurrentProject(value) {
 
 function pushProject(project) {
 
+    let deleted = false;
+
     const projectsDisplay = document.querySelector(".projects");
 
     const projectPar = document.createElement("p");
     projectPar.textContent = project.title;
+
+    const deleteProject = document.createElement("i");
+    deleteProject.classList.add("nf");
+    deleteProject.classList.add("nf-md-delete");
+    deleteProject.addEventListener("click", () => {
+
+        if (projects.length > 1) {
+            projectPar.remove();
+
+            for (let i = 0; i < projects.length; i++) {
+                if (projects[i].title === project.title) {
+                    projects.splice(i, 1);
+                }
+            }
+
+            selectProject(projects[0]);
+            deleted = true;
+        }
+
+    });
+    projectPar.appendChild(deleteProject);
+
     projectsDisplay.appendChild(projectPar);
 
     selectProject(project);
 
     projectPar.addEventListener("click", () => {
-        selectProject(project);
+        if (!deleted) {
+            selectProject(project);
+        }
     });
 
     saveProjects();
