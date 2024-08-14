@@ -1,9 +1,9 @@
 import { currentProject } from "./domProjects";
-import { pushTodos } from "./domTodos";
+import { isDialogOpen, pushTodos } from "./domTodos";
 
 
 function fastTodo(e) {
-    if (e.key === "a" && e.ctrlKey) {
+    if (e.key === "a" && e.ctrlKey && !isDialogOpen) {
         e.preventDefault();
         const input = prompt("Input todo: ");
 

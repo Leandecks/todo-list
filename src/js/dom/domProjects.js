@@ -1,5 +1,5 @@
 import { Project, projects } from "../project";
-import { pushTodos } from "./domTodos";
+import {isDialogOpen, pushTodos, setIsDialogOpen} from "./domTodos";
 import { saveProjects } from "./localStorage";
 
 let currentProject = projects[0];
@@ -59,6 +59,7 @@ function addNewProject() {
 
     titleInput.value = "";
     dialog.showModal();
+    setIsDialogOpen(true);
 
     submitButton.addEventListener("click", submitted);
 
@@ -84,6 +85,7 @@ function addNewProject() {
         const newProject = Project(titleInput.value);
         pushProject(newProject);
         dialog.close();
+        setIsDialogOpen(false);
 
         submitButton.removeEventListener("click", submitted);
     }
@@ -92,6 +94,7 @@ function addNewProject() {
 
     function closed() {
         dialog.close();
+        setIsDialogOpen(false);
         submitButton.removeEventListener("click", submitted);
         closeButton.removeEventListener("click", closed);
     }

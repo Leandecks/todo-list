@@ -3,6 +3,12 @@ import * as _ from "lodash";
 import { format, parse } from "date-fns";
 import { saveProjects } from "./localStorage";
 
+let isDialogOpen = false;
+
+function setIsDialogOpen(value) {
+    isDialogOpen = value;
+}
+
 function pushTodos(project) {
 
     const todosDisplay = document.querySelector(".todos");
@@ -132,6 +138,8 @@ function editCurrentTodo(todo) {
 
     dialog.showModal();
 
+    setIsDialogOpen(true);
+
     function objectToList(object) {
         let string = "";
         for (const objectElement in object) {
@@ -181,13 +189,15 @@ function editCurrentTodo(todo) {
 
         pushTodos(currentProject);
         dialog.close();
+        setIsDialogOpen(false);
         submitButton.removeEventListener("click", submitted);
     }
 
     closeButton.addEventListener("click", closed);
 
     function closed() {
-        dialog.close()
+        dialog.close();
+        setIsDialogOpen(false);
         submitButton.removeEventListener("click", submitted);
         closeButton.removeEventListener("click", closed);
     }
@@ -207,6 +217,8 @@ function addNewTodo() {
     const dialogTitle = document.querySelector(".todo-dialog-title");
 
     dialog.showModal();
+
+    isDialogOpen = true;
 
     titleInput.value = "";
     descInput.value = "";
@@ -254,6 +266,8 @@ function addNewTodo() {
         pushTodos(currentProject);
         dialog.close();
 
+        isDialogOpen = false;
+
         submitButton.removeEventListener("click", submitted);
     }
 
@@ -261,10 +275,11 @@ function addNewTodo() {
 
     function closed() {
         dialog.close();
+        isDialogOpen = false;
         closeButton.removeEventListener("click", closed);
         submitButton.removeEventListener("click", submitted);
     }
 
 }
 
-export { pushTodos, editCurrentTodo, addNewTodo };
+export { pushTodos, editCurrentTodo, addNewTodo, isDialogOpen, setIsDialogOpen };
