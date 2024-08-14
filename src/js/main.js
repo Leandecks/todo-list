@@ -1,14 +1,14 @@
 import "../sass/style.sass";
-import { defaultProject } from "./dom/examples";
-import { pushProject, addNewProject } from "./dom/domProjects";
+import { addNewProject } from "./dom/domProjects";
 import { addNewTodo } from "./dom/domTodos";
-import {fastTodo} from "./dom/fastTodo";
+import { fastTodo } from "./dom/fastTodo";
+import { loadProjects } from "./dom/localStorage";
 
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    pushProject(defaultProject);
+    loadProjects();
 
     const addProjectBtn = document.querySelector(".addProjectBtn");
     addProjectBtn.addEventListener("click", () => {

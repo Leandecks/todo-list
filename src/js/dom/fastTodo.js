@@ -7,7 +7,7 @@ function fastTodo(e) {
         e.preventDefault();
         const input = prompt("Input todo: ");
 
-        if (input === "") {
+        if (input === "" || input === null) {
             return;
         }
 

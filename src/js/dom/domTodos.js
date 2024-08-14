@@ -1,6 +1,7 @@
 import { currentProject } from "./domProjects";
 import * as _ from "lodash";
 import { format, parse } from "date-fns";
+import { saveProjects } from "./localStorage";
 
 function pushTodos(project) {
 
@@ -111,6 +112,8 @@ function pushTodos(project) {
         }
 
         todosDisplay.appendChild(todoDiv);
+
+        saveProjects();
     }
 
 }

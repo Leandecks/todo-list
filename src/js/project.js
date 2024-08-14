@@ -1,6 +1,10 @@
 "use strict";
 
-const projects = [];
+let projects = [];
+
+function setProjects(value) {
+    projects = value;
+}
 
 function Project(title) {
 
@@ -26,4 +30,4 @@ function Project(title) {
 
 }
 
-export { Project, projects };
+export { Project, projects, setProjects };

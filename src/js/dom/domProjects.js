@@ -1,7 +1,12 @@
 import { Project, projects } from "../project";
 import { pushTodos } from "./domTodos";
+import { saveProjects } from "./localStorage";
 
 let currentProject = projects[0];
+
+function setCurrentProject(value) {
+    currentProject = value;
+}
 
 function pushProject(project) {
 
@@ -11,11 +16,13 @@ function pushProject(project) {
     projectPar.textContent = project.title;
     projectsDisplay.appendChild(projectPar);
 
-    selectProject(project)
+    selectProject(project);
 
     projectPar.addEventListener("click", () => {
         selectProject(project);
     });
+
+    saveProjects();
 
 }
 
@@ -30,7 +37,7 @@ function selectProject(project) {
         }
     }
 
-    currentProject = project;
+    setCurrentProject(project);
 
     for (const par of projectsDisplay.children) {
         if (par.textContent === project.title) {
@@ -91,4 +98,4 @@ function addNewProject() {
 
 }
 
-export { currentProject, pushProject, selectProject, addNewProject };
+export { currentProject, pushProject, selectProject, addNewProject, setCurrentProject };
