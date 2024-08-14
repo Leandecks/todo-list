@@ -1,7 +1,7 @@
 {
-  "name": "webpack",
+  "name": "todo-list",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple to do list web app",
   "private": true,
   "scripts": {
     "build": "webpack --progress --config webpack/webpack.prod.js",
