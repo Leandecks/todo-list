@@ -31,7 +31,10 @@ function pushProject(project) {
                 }
             }
 
-            selectProject(projects[0]);
+            if (currentProject === project) {
+                selectProject(projects[0]);
+            }
+
             deleted = true;
         }
 
