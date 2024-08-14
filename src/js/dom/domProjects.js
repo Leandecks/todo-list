@@ -20,6 +20,7 @@ function pushProject(project) {
     const deleteProject = document.createElement("i");
     deleteProject.classList.add("nf");
     deleteProject.classList.add("nf-md-delete");
+    deleteProject.style.display = "none";
     deleteProject.addEventListener("click", () => {
 
         if (projects.length > 1) {
@@ -40,6 +41,14 @@ function pushProject(project) {
 
     });
     projectPar.appendChild(deleteProject);
+
+    projectPar.addEventListener("mouseenter", () => {
+       deleteProject.style.display = "inline";
+    });
+
+    projectPar.addEventListener("mouseleave", () => {
+        deleteProject.style.display = "none";
+    });
 
     projectsDisplay.appendChild(projectPar);
 
