@@ -17,6 +17,15 @@ function pushProject(project) {
     const projectPar = document.createElement("p");
     projectPar.textContent = project.title;
 
+    const editProject = document.createElement("i");
+    editProject.classList.add("nf");
+    editProject.classList.add("nf-md-square_edit_outline");
+    editProject.style.display = "none";
+    editProject.addEventListener("click", () => {
+       editCurrentProject(project);
+    });
+    projectPar.appendChild(editProject);
+
     const deleteProject = document.createElement("i");
     deleteProject.classList.add("nf");
     deleteProject.classList.add("nf-md-delete");
@@ -43,11 +52,13 @@ function pushProject(project) {
     projectPar.appendChild(deleteProject);
 
     projectPar.addEventListener("mouseenter", () => {
-       deleteProject.style.display = "inline";
+        deleteProject.style.display = "inline";
+        editProject.style.display = "inline";
     });
 
     projectPar.addEventListener("mouseleave", () => {
         deleteProject.style.display = "none";
+        editProject.style.display = "none";
     });
 
     projectsDisplay.appendChild(projectPar);
@@ -88,13 +99,67 @@ function selectProject(project) {
 
 }
 
-function addNewProject() {
+function editCurrentProject(project) {
 
+    const projectsDisplay = document.querySelector(".projects");
     const dialog = document.querySelector(".project-dialog");
+    const dialogTitle = document.querySelector(".project-dialog-title");
     const titleInput = document.querySelector("#project-title");
     const submitButton = document.querySelector(".project-submit");
     const closeButton = document.querySelector(".project-close");
 
+    dialogTitle.textContent = "Edit Project";
+    titleInput.value = project.title;
+    dialog.showModal();
+    setIsDialogOpen(true);
+
+    submitButton.addEventListener("click", submitted);
+
+    function submitted() {
+        const pars = projectsDisplay.children
+        const projectName = project.title;
+
+        for (let i = 0; i < projects.length; i++) {
+            if (projects[i].title === project.title) {
+                project.title = titleInput.value;
+            }
+        }
+
+        saveProjects();
+
+        for (let i = 0; i < pars.length; i++) {
+            if (pars[i].textContent === projectName) {
+                pars[i].textContent = titleInput.value;
+            }
+        }
+
+
+        dialog.close();
+        setIsDialogOpen(false);
+        submitButton.removeEventListener("click", submitted);
+        location.reload();
+    }
+
+    closeButton.addEventListener("click", closed);
+
+    function closed() {
+        dialog.close();
+        setIsDialogOpen(false);
+        submitButton.removeEventListener("click", submitted);
+        closeButton.removeEventListener("click", closed);
+    }
+
+}
+
+function addNewProject() {
+
+    const dialog = document.querySelector(".project-dialog");
+    const dialogTitle = document.querySelector(".project-dialog-title");
+    const titleInput = document.querySelector("#project-title");
+    const submitButton = document.querySelector(".project-submit");
+    const closeButton = document.querySelector(".project-close");
+
+    dialogTitle.textContent = "New Project";
     titleInput.value = "";
     dialog.showModal();
     setIsDialogOpen(true);
