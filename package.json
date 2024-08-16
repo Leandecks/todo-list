@@ -4,7 +4,6 @@
   "description": "Simple to do list web app",
   "private": true,
   "scripts": {
-    "build": "webpack --progress --config webpack/webpack.prod.js",
     "dev": "webpack serve --open --config webpack/webpack.dev.js"
   },
   "keywords": [],

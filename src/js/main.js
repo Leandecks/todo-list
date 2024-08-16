@@ -1,4 +1,4 @@
-import "../sass/style.sass";
+import "../css/style.css";
 import { addNewProject } from "./dom/domProjects";
 import { addNewTodo } from "./dom/domTodos";
 import { fastTodo } from "./dom/fastTodo";
