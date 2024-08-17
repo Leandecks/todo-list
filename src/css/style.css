@@ -1,8 +1,14 @@
 @import "https://www.nerdfonts.com/assets/css/webfont.css";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap');
 
 @font-face {
     font-family: "Heroes Legend Hollow";
     src: url("../fonts/Heroes_Legend_Hollow.ttf");
+}
+
+@font-face {
+    font-family: "Heroes Legend";
+    src: url("../fonts/Heroes_Legend.ttf");
 }
 
 :root {
@@ -22,41 +28,64 @@ body {
     width: 100%;
     height: 100%;
     font-size: 20px;
-    font-family: Ubuntu, sans-serif;
     color: var(--second);
+    font-family: "Noto Sans Mono", sans-serif;
 }
 
 body {
     display: flex;
 }
 
-.sidebar,
-.projects {
+.sidebar {
     padding: 2rem 1rem;
     background: var(--prime);
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 1rem;
+    font-size: 1.2rem;
 }
 
-.title {
+.sidebar .title {
     width: 20rem;
     height: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
 }
 
-.sidebar h1 {
+.sidebar .title h1 {
     font-family: "Heroes Legend Hollow", sans-serif;
     font-size: 1.8rem;
 }
 
+.sidebar .title i {
+    font-size: 2rem;
+}
+
+.sidebar .projects {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+}
+
 .addProjectBtn {
-    font-family: Ubuntu, sans-serif;
+    font-family: "Noto Sans Mono", sans-serif;
     font-size: 1.2rem;
     padding: 1rem 2rem;
+    background: var(--second);
+    border: none;
+    border-radius: 0.2rem;
+    transition: all 200ms ease-in-out;
+    height: 4rem;
+}
+
+.addProjectBtn:hover {
+    box-shadow: inset 0 4rem #339966;
+    color: var(--second);
 }
 
 .todos {
@@ -79,9 +108,10 @@ button {
 .addTodoBtn {
     width: 4rem;
     height: 4rem;
-    font-family: Ubuntu, sans-serif;
+    font-family: "Noto Sans Mono", sans-serif;
     font-size: 1.2rem;
     position: absolute;
     bottom: 1rem;
     right: 1rem;
+    background: var(--second);
 }
