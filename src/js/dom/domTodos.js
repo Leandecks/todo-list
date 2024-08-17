@@ -26,15 +26,17 @@ function pushTodos(project) {
         const editTodo = document.createElement("i");
 
         if (todo.priority === 1) {
-            todoDiv.style.background = "#339966";
+            todoDiv.style.background = "#2a9d8f";
         } else if (todo.priority === 2) {
-            todoDiv.style.background = "#ffff33";
+            todoDiv.style.background = "#e9c46a";
         } else if (todo.priority === 3) {
-            todoDiv.style.background = "#ff3333";
+            todoDiv.style.background = "#e63946";
         } else {
-            todoDiv.style.background = "#fff";
+            todoDiv.style.background = "#e0e1dd";
         }
 
+        todoTitle.classList.add("todo-title");
+        checkbox.classList.add("todo-checkmark");
         todoChecklist.classList.add("todo-checklist");
 
         if (todo.checklist !== undefined) {
@@ -104,26 +106,26 @@ function pushTodos(project) {
         });
 
         const titleDescChecklist = document.createElement("div");
-        const rightTodo = document.createElement("div");
         const leftTodo = document.createElement("div");
+        const rightTodo = document.createElement("div");
 
         titleDescChecklist.classList.add("title-desc-checklist");
-        rightTodo.classList.add("right-todo");
         leftTodo.classList.add("left-todo");
+        rightTodo.classList.add("right-todo");
 
         titleDescChecklist.appendChild(todoTitle);
         titleDescChecklist.appendChild(todoDescription);
         titleDescChecklist.appendChild(todoChecklist);
 
-        rightTodo.appendChild(checkbox);
-        rightTodo.appendChild(titleDescChecklist);
+        leftTodo.appendChild(checkbox);
+        leftTodo.appendChild(titleDescChecklist);
 
-        leftTodo.appendChild(todoDueDate);
-        leftTodo.appendChild(deleteTodo);
-        leftTodo.appendChild(editTodo);
+        rightTodo.appendChild(todoDueDate);
+        rightTodo.appendChild(deleteTodo);
+        rightTodo.appendChild(editTodo);
 
-        todoDiv.appendChild(rightTodo);
         todoDiv.appendChild(leftTodo);
+        todoDiv.appendChild(rightTodo);
 
         if (todo.completed) {
             checkbox.checked = true;

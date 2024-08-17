@@ -17,6 +17,11 @@
     --bg: #1b2432;
 }
 
+::selection {
+    background: var(--prime);
+    color: var(--second);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -78,13 +83,12 @@ body {
     padding: 1rem 2rem;
     background: var(--second);
     border: none;
-    border-radius: 0.2rem;
     transition: all 200ms ease-in-out;
     height: 4rem;
 }
 
 .addProjectBtn:hover {
-    box-shadow: inset 0 4rem #339966;
+    box-shadow: inset 0 4rem #1b2432;
     color: var(--second);
 }
 
@@ -97,8 +101,45 @@ body {
     gap: 1rem;
 }
 
-.todo {
+.todos .todo {
     border: solid;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    color: var(--prime);
+}
+
+.todos .todo .left-todo {
+    display: flex;
+    gap: 1rem;
+}
+
+.todos .todo .left-todo > input {
+    width: 1.2rem;
+    accent-color: var(--prime);
+}
+
+.todos .todo .left-todo .todo-title {
+    font-weight: bold;
+}
+
+.todos .todo .left-todo .todo-checklist {
+    display: flex;
+    flex-direction: column;
+}
+
+.todos .todo .left-todo .todo-checklist > * {
+    display: flex;
+    gap: 1rem;
+}
+
+.todos .todo .left-todo .todo-checklist input {
+    accent-color: var(--prime);
+}
+
+.todos .todo .right-todo {
+    display: flex;
+    gap: 1rem;
 }
 
 button {
