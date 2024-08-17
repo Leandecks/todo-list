@@ -109,6 +109,7 @@ function editCurrentProject(project) {
     const closeButton = document.querySelector(".project-close");
 
     dialogTitle.textContent = "Edit Project";
+    submitButton.textContent = "Update";
     titleInput.value = project.title;
     dialog.showModal();
     setIsDialogOpen(true);
@@ -160,6 +161,7 @@ function addNewProject() {
     const closeButton = document.querySelector(".project-close");
 
     dialogTitle.textContent = "New Project";
+    submitButton.textContent = "Create";
     titleInput.value = "";
     dialog.showModal();
     setIsDialogOpen(true);
