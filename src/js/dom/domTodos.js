@@ -85,9 +85,11 @@ function pushTodos(project) {
         checkbox.addEventListener("click", () => {
             if (checkbox.checked) {
                 checkbox.nextElementSibling.firstElementChild.style.textDecoration = "line-through";
+                checkbox.nextElementSibling.firstElementChild.nextElementSibling.style.textDecoration = "line-through";
                 todo.completed = true;
             } else {
                 checkbox.nextElementSibling.firstElementChild.style.textDecoration = "none";
+                checkbox.nextElementSibling.firstElementChild.nextElementSibling.style.textDecoration = "none";
                 todo.completed = false;
             }
         });

@@ -13,8 +13,9 @@ function pushProject(project) {
     let deleted = false;
 
     const projectsDisplay = document.querySelector(".projects");
-
+    const projectParWrapper = document.createElement("div");
     const projectPar = document.createElement("p");
+    projectParWrapper.appendChild(projectPar);
     projectPar.textContent = project.title;
 
     const editProject = document.createElement("i");
@@ -24,7 +25,7 @@ function pushProject(project) {
     editProject.addEventListener("click", () => {
        editCurrentProject(project);
     });
-    projectPar.appendChild(editProject);
+    projectParWrapper.appendChild(editProject);
 
     const deleteProject = document.createElement("i");
     deleteProject.classList.add("nf");
@@ -49,7 +50,7 @@ function pushProject(project) {
         }
 
     });
-    projectPar.appendChild(deleteProject);
+    projectParWrapper.appendChild(deleteProject);
 
     projectPar.addEventListener("mouseenter", () => {
         deleteProject.style.display = "inline";
@@ -61,7 +62,7 @@ function pushProject(project) {
         editProject.style.display = "none";
     });
 
-    projectsDisplay.appendChild(projectPar);
+    projectsDisplay.appendChild(projectParWrapper);
 
     selectProject(project);
 

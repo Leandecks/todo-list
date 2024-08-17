@@ -77,6 +77,12 @@ body {
     gap: .8rem;
 }
 
+.sidebar .projects > div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .addProjectBtn {
     font-family: "Noto Sans Mono", sans-serif;
     font-size: 1.2rem;
@@ -88,7 +94,7 @@ body {
 }
 
 .addProjectBtn:hover {
-    box-shadow: inset 0 4rem #1b2432;
+    box-shadow: inset 0 4rem var(--bg);
     color: var(--second);
 }
 
@@ -102,7 +108,6 @@ body {
 }
 
 .todos .todo {
-    border: solid;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -150,9 +155,16 @@ button {
     width: 4rem;
     height: 4rem;
     font-family: "Noto Sans Mono", sans-serif;
-    font-size: 1.2rem;
+    font-size: 3rem;
     position: absolute;
-    bottom: 1rem;
+    bottom: 2rem;
     right: 1rem;
     background: var(--second);
+    border: none;
+    transition: all 200ms ease-in-out;
+}
+
+.addTodoBtn:hover {
+    box-shadow: inset 0 4rem var(--prime);
+    color: var(--second);
 }
