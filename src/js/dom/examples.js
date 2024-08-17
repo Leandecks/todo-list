@@ -16,8 +16,10 @@ const toDo1 = defaultProject.addTodo(
 
 const toDo2 = defaultProject.addTodo("Play piano",
     "Play the piano again",
-    "23/07/2024",
+    "23/02/2024",
     1,
+    [],
+    true
 );
 
 const toDo3 = defaultProject.addTodo(

@@ -105,6 +105,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    overflow: scroll;
 }
 
 .todos .todo {
@@ -162,6 +163,9 @@ button {
     background: var(--second);
     border: none;
     transition: all 200ms ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .addTodoBtn:hover {
