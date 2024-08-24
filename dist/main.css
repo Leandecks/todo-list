@@ -1,0 +1,242 @@
+@import url(https://www.nerdfonts.com/assets/css/webfont.css);
+@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap);
+@font-face {
+    font-family: "Heroes Legend Hollow";
+    src: url(8b96380003aa9dff60c4.ttf);
+}
+
+@font-face {
+    font-family: "Heroes Legend";
+    src: url(71e501cbbf7875352077.ttf);
+}
+
+:root {
+    --prime: #121420;
+    --second: #e0e1dd;
+    --bg: #1b2432;
+}
+
+::selection {
+    background: var(--prime);
+    color: var(--second);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    color: var(--second);
+    font-family: "Noto Sans Mono", sans-serif;
+}
+
+body {
+    display: flex;
+}
+
+.sidebar {
+    padding: 2rem 1rem;
+    background: var(--prime);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 1.2rem;
+}
+
+.sidebar .title {
+    width: 20rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.sidebar .title h1 {
+    font-family: "Heroes Legend Hollow", sans-serif;
+    font-size: 1.8rem;
+}
+
+.sidebar .title i {
+    font-size: 2rem;
+}
+
+.sidebar .projects {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+}
+
+.sidebar .projects > div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.addProjectBtn {
+    font-family: "Noto Sans Mono", sans-serif;
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    background: var(--second);
+    border: none;
+    transition: all 200ms ease-in-out;
+    height: 4rem;
+}
+
+.addProjectBtn:hover {
+    box-shadow: inset 0 4rem var(--bg);
+    color: var(--second);
+}
+
+.todos {
+    padding: 1rem;
+    background: var(--bg);
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: scroll;
+}
+
+.todos .todo {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    color: var(--prime);
+    user-select: none;
+}
+
+.todos .todo .left-todo {
+    display: flex;
+    gap: 1rem;
+}
+
+.todos .todo .left-todo > input {
+    width: 1.2rem;
+    accent-color: var(--prime);
+}
+
+.todos .todo .left-todo .todo-title {
+    font-weight: bold;
+}
+
+.todos .todo .left-todo .todo-checklist {
+    display: flex;
+    flex-direction: column;
+}
+
+.todos .todo .left-todo .todo-checklist > * {
+    display: flex;
+    gap: 1rem;
+}
+
+.todos .todo .left-todo .todo-checklist input {
+    accent-color: var(--prime);
+}
+
+.todos .todo .right-todo {
+    display: flex;
+    gap: 1rem;
+}
+
+button {
+    font-size: 2rem;
+}
+
+.addTodoBtn {
+    width: 4rem;
+    height: 4rem;
+    font-family: "Noto Sans Mono", sans-serif;
+    font-size: 3rem;
+    position: absolute;
+    bottom: 2rem;
+    right: 1rem;
+    background: var(--second);
+    border: none;
+    transition: all 200ms ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addTodoBtn:hover {
+    box-shadow: inset 0 4rem var(--prime);
+    color: var(--second);
+}
+
+dialog {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    padding: 1rem;
+    border: none;
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--second);
+    font-size: 1.1rem;
+}
+
+dialog h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+dialog form {
+    display: flex;
+    gap: .7rem;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+dialog form label {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: center;
+}
+
+dialog button {
+    border: none;
+    font-family: "Noto Sans Mono", sans-serif;
+    padding: .5rem;
+    font-size: 1.2rem;
+    background: var(--second);
+    transition: all 300ms ease-in-out;
+}
+
+dialog button:hover {
+    box-shadow: inset 0 4rem var(--bg);
+    color: var(--second);
+}
+
+dialog input {
+    height: 1rem;
+    width: 10rem;
+    border: none;
+    padding: .8rem .6rem;
+    font-size: .8rem;
+    font-family: "Noto Sans Mono", sans-serif;
+}
+
+dialog .buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+#todo-due {
+    padding: 0 1rem;
+    height: 1.6rem;
+}
+
+/*# sourceMappingURL=main.css.map*/
