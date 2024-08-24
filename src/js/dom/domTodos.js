@@ -50,20 +50,22 @@ function pushTodos(project) {
                 checklistTodoMark.type = "checkbox";
                 checklistTodoMark.checked = todo.checklist[checklistKey]
 
-                checklistTodoMark.addEventListener("click", () => {
-                    if (checklistTodoMark.checked) {
+                checklistTodoDiv.appendChild(checklistTodoMark);
+                checklistTodoDiv.appendChild(checklistTodoPar);
+
+                checklistTodoDiv.addEventListener("click", () => {
+                    if (!checklistTodoMark.checked) {
+                        checklistTodoMark.checked = true;
                         checklistTodoPar.style.textDecoration = "line-through";
                         todo.checklist[checklistKey] = true;
                         saveProjects();
                     } else {
+                        checklistTodoMark.checked = false;
                         checklistTodoPar.style.textDecoration = "none";
                         todo.checklist[checklistKey] = false;
                         saveProjects();
                     }
                 });
-
-                checklistTodoDiv.appendChild(checklistTodoMark);
-                checklistTodoDiv.appendChild(checklistTodoPar);
 
                 if (todo.checklist[checklistKey]) {
                     checklistTodoMark.checked = true;

@@ -113,6 +113,7 @@ body {
     display: flex;
     justify-content: space-between;
     color: var(--prime);
+    user-select: none;
 }
 
 .todos .todo .left-todo {
