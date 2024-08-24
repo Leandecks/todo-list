@@ -2,7 +2,6 @@ import { currentProject } from "./domProjects";
 import * as _ from "lodash";
 import { format, parse } from "date-fns";
 import { saveProjects } from "./localStorage";
-import {projects} from "../project";
 
 let isDialogOpen = false;
 
