@@ -4,7 +4,8 @@
   "description": "Simple to do list web app",
   "private": true,
   "scripts": {
-    "dev": "webpack serve --open --config webpack/webpack.dev.js"
+    "dev": "webpack serve --open --config webpack/webpack.dev.js",
+    "build": "webpack --progress --config webpack/webpack.prod.js"
   },
   "keywords": [],
   "author": "Leandecks <leandrogridelli@gmail.com> (https://leandecks.github.io/)",
@@ -25,6 +26,7 @@
     "date-fns": "^3.6.0",
     "html-webpack-plugin": "^5.6.0",
     "lodash": "^4.17.21",
-    "style-loader": "^3.3.4"
+    "style-loader": "^3.3.4",
+    "webpack-merge": "^6.0.1"
   }
 }
