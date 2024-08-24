@@ -53,7 +53,11 @@ function pushTodos(project) {
                 checklistTodoDiv.appendChild(checklistTodoMark);
                 checklistTodoDiv.appendChild(checklistTodoPar);
 
-                checklistTodoDiv.addEventListener("click", () => {
+                checklistTodoDiv.addEventListener("click", (e) => {
+                    if (e.target === checklistTodoMark) {
+                        checklistTodoMark.checked = !checklistTodoMark.checked;
+                    }
+
                     if (!checklistTodoMark.checked) {
                         checklistTodoMark.checked = true;
                         checklistTodoPar.style.textDecoration = "line-through";
