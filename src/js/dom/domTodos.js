@@ -43,32 +43,34 @@ function pushTodos(project) {
             for (const checklistKey in todo.checklist) {
                 const checklistTodoDiv = document.createElement("div");
 
+                const checklistTodoPar = document.createElement("p");
+                checklistTodoPar.textContent = checklistKey;
+
                 const checklistTodoMark = document.createElement("input");
                 checklistTodoMark.type = "checkbox";
                 checklistTodoMark.checked = todo.checklist[checklistKey]
 
                 checklistTodoMark.addEventListener("click", () => {
                     if (checklistTodoMark.checked) {
-                        checklistTodoMark.nextElementSibling.style.textDecoration = "line-through";
+                        checklistTodoPar.style.textDecoration = "line-through";
                         todo.checklist[checklistKey] = true;
+                        saveProjects();
                     } else {
-                        checklistTodoMark.nextElementSibling.style.textDecoration = "none";
+                        checklistTodoPar.style.textDecoration = "none";
                         todo.checklist[checklistKey] = false;
+                        saveProjects();
                     }
                 });
-
-                const checklistTodoPar = document.createElement("p");
-                checklistTodoPar.textContent = checklistKey;
 
                 checklistTodoDiv.appendChild(checklistTodoMark);
                 checklistTodoDiv.appendChild(checklistTodoPar);
 
                 if (todo.checklist[checklistKey]) {
                     checklistTodoMark.checked = true;
-                    checklistTodoMark.nextElementSibling.style.textDecoration = "line-through";
+                    checklistTodoPar.style.textDecoration = "line-through";
                 } else {
                     checklistTodoMark.checked = false;
-                    checklistTodoMark.nextElementSibling.style.textDecoration = "none";
+                    checklistTodoPar.style.textDecoration = "none";
                 }
 
                 todoChecklist.appendChild(checklistTodoDiv);
