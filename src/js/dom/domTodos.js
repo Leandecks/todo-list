@@ -275,7 +275,7 @@ function addNewTodo() {
             return;
         }
         const defaultFormat = parse(date, "yyyy-MM-dd", new Date());
-        const preferredFormat = format(defaultFormat, "MM/dd/yyyy");
+        const preferredFormat = format(defaultFormat, "dd/MM/yyyy");
         return preferredFormat;
     }
 
