@@ -97,19 +97,28 @@ function pushTodos(project) {
             todoDescription.style.textDecoration = "none";
         }
 
-        checkbox.addEventListener("click", () => {
-            if (checkbox.checked) {
-                todoTitle.style.textDecoration = "line-through";
-                todoDescription.style.textDecoration = "line-through";
-                todo.completed = true;
-                saveProjects();
-            } else {
-                todoTitle.style.textDecoration = "none";
-                todoDescription.style.textDecoration = "none";
-                todo.completed = false;
-                saveProjects();
-            }
-        });
+        [checkbox, todoTitle, todoDescription].forEach(el => {
+            el.addEventListener("click", () => {
+                if (el === checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                }
+
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    todoTitle.style.textDecoration = "line-through";
+                    todoDescription.style.textDecoration = "line-through";
+                    todo.completed = true;
+                    saveProjects();
+                } else {
+                    checkbox.checked = false;
+                    todoTitle.style.textDecoration = "none";
+                    todoDescription.style.textDecoration = "none";
+                    todo.completed = false;
+                    saveProjects();
+                }
+            });
+
+        })
 
         deleteTodo.classList.add("nf");
         deleteTodo.classList.add("nf-md-delete");
