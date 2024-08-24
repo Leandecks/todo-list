@@ -1,7 +1,7 @@
-import { currentProject } from "./domProjects";
+import {currentProject} from "./domProjects";
 import * as _ from "lodash";
-import { format, parse } from "date-fns";
-import { saveProjects } from "./localStorage";
+import {format, parse} from "date-fns";
+import {saveProjects} from "./localStorage";
 
 let isDialogOpen = false;
 
@@ -279,8 +279,7 @@ function addNewTodo() {
             return;
         }
         const defaultFormat = parse(date, "yyyy-MM-dd", new Date());
-        const preferredFormat = format(defaultFormat, "dd/MM/yyyy");
-        return preferredFormat;
+        return format(defaultFormat, "dd/MM/yyyy");
     }
 
     function submitted() {
