@@ -1,5 +1,5 @@
 import { Project, projects } from "../project";
-import { pushTodos, setIsDialogOpen} from "./domTodos";
+import { pushTodos, setIsDialogOpen } from "./domTodos";
 import { saveProjects } from "./localStorage";
 
 let currentProject = projects[0];
@@ -23,7 +23,7 @@ function pushProject(project) {
     editProject.classList.add("nf-md-square_edit_outline");
     editProject.style.display = "none";
     editProject.addEventListener("click", () => {
-       editCurrentProject(project);
+        editCurrentProject(project);
     });
     projectParWrapper.appendChild(editProject);
 
@@ -47,17 +47,20 @@ function pushProject(project) {
             }
 
             deleted = true;
+
+            saveProjects();
         }
 
     });
     projectParWrapper.appendChild(deleteProject);
 
-    projectPar.addEventListener("mouseenter", () => {
+    projectParWrapper.addEventListener("mouseenter", () => {
         deleteProject.style.display = "inline";
         editProject.style.display = "inline";
     });
 
-    projectPar.addEventListener("mouseleave", () => {
+
+    projectParWrapper.addEventListener("mouseleave", () => {
         deleteProject.style.display = "none";
         editProject.style.display = "none";
     });

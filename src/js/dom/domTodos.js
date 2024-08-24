@@ -2,6 +2,7 @@ import { currentProject } from "./domProjects";
 import * as _ from "lodash";
 import { format, parse } from "date-fns";
 import { saveProjects } from "./localStorage";
+import {projects} from "../project";
 
 let isDialogOpen = false;
 
@@ -82,15 +83,28 @@ function pushTodos(project) {
 
         checkbox.type = "checkbox";
         checkbox.classList.add("checkmark");
+
+        if (todo.completed) {
+            checkbox.checked = true;
+            todoTitle.style.textDecoration = "line-through";
+            todoDescription.style.textDecoration = "line-through";
+        } else {
+            checkbox.checked = false;
+            todoTitle.style.textDecoration = "none";
+            todoDescription.style.textDecoration = "none";
+        }
+
         checkbox.addEventListener("click", () => {
             if (checkbox.checked) {
-                checkbox.nextElementSibling.firstElementChild.style.textDecoration = "line-through";
-                checkbox.nextElementSibling.firstElementChild.nextElementSibling.style.textDecoration = "line-through";
+                todoTitle.style.textDecoration = "line-through";
+                todoDescription.style.textDecoration = "line-through";
                 todo.completed = true;
+                saveProjects();
             } else {
-                checkbox.nextElementSibling.firstElementChild.style.textDecoration = "none";
-                checkbox.nextElementSibling.firstElementChild.nextElementSibling.style.textDecoration = "none";
+                todoTitle.style.textDecoration = "none";
+                todoDescription.style.textDecoration = "none";
                 todo.completed = false;
+                saveProjects();
             }
         });
 
@@ -128,14 +142,6 @@ function pushTodos(project) {
 
         todoDiv.appendChild(leftTodo);
         todoDiv.appendChild(rightTodo);
-
-        if (todo.completed) {
-            checkbox.checked = true;
-            checkbox.nextElementSibling.style.textDecoration = "line-through";
-        } else {
-            checkbox.checked = false;
-            checkbox.nextElementSibling.style.textDecoration = "none";
-        }
 
         todosDisplay.appendChild(todoDiv);
 
@@ -192,11 +198,13 @@ function editCurrentTodo(todo) {
     }
 
     function formatDate(date) {
+        console.log("runnin");
         if (date === "") {
             return;
         }
         const defaultFormat = parse(date, "yyyy-MM-dd", new Date());
-        const preferredFormat = format(defaultFormat, "MM/dd/yyyy");
+        const preferredFormat = format(defaultFormat, "dd/MM/yyyy");
+        console.log(preferredFormat)
         return preferredFormat;
     }
 

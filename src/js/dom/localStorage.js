@@ -18,7 +18,7 @@ function loadProjects() {
         storedProjects.forEach(proj => {
             const newProj = Project(proj.title);
             proj.todos.forEach(todo => {
-               newProj.addTodo(todo.title, todo.description, todo.dueDate, todo.priority, todo.checklist, todo.completed);
+                newProj.addTodo(todo.title, todo.description, todo.dueDate, todo.priority, todo.checklist, todo.completed);
             });
             newProjects.push(newProj);
         });
