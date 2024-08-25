@@ -15,6 +15,9 @@
     --prime: #121420;
     --second: #e0e1dd;
     --bg: #1b2432;
+    --green: #2a9d8f;
+    --yellow: #e9c46a;
+    --red: #e63946;
 }
 
 ::selection {
@@ -233,6 +236,35 @@ dialog .buttons {
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
+}
+
+dialog .prio-circle {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+.white {
+    background-color: var(--second);
+}
+
+.green {
+    background-color: var(--green);
+}
+
+.yellow {
+    background-color: var(--yellow);
+}
+
+.red {
+    background-color: var(--red);
+}
+
+#todo-priority {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    justify-content: center;
 }
 
 #todo-due {
