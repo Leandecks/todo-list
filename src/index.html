@@ -57,11 +57,17 @@
                 </label>
                 <div id="todo-priority">
                     <p>Priority:</p>
-                    <div class="prio-circle white"></div>
-                    <div class="prio-circle green"></div>
-                    <div class="prio-circle yellow"></div>
-                    <div class="prio-circle red"></div>
+                    <div class="prio-circles">
+                        <div class="prio-circle white"></div>
+                        <div class="prio-circle green"></div>
+                        <div class="prio-circle yellow"></div>
+                        <div class="prio-circle red"></div>
+                    </div>
                 </div>
+                <label for="todo-checklist">
+                    Checklist (separate by comma):
+                    <input type="text" name="title" id="todo-checklist">
+                </label>
             </form>
             <div class="buttons">
                 <button type="submit" class="todo-submit">Create</button>

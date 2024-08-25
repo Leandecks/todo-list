@@ -200,7 +200,8 @@ dialog form {
     margin: 1rem;
 }
 
-dialog form label {
+dialog form label,
+#todo-priority {
     display: flex;
     justify-content: space-between;
     gap: 2rem;
@@ -239,9 +240,14 @@ dialog .buttons {
 }
 
 dialog .prio-circle {
-    width: 2rem;
-    height: 2rem;
+    width: 2.1rem;
+    height: 2.1rem;
     border-radius: 50%;
+}
+
+dialog .prio-circles {
+    display: flex;
+    gap: .5rem;
 }
 
 .white {
@@ -258,13 +264,6 @@ dialog .prio-circle {
 
 .red {
     background-color: var(--red);
-}
-
-#todo-priority {
-    display: flex;
-    gap: .5rem;
-    align-items: center;
-    justify-content: center;
 }
 
 #todo-due {
