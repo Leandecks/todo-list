@@ -172,7 +172,7 @@ function editCurrentTodo(todo) {
     const titleInput = document.querySelector("#todo-title");
     const descInput = document.querySelector("#todo-description");
     const dueInput = document.querySelector("#todo-due");
-    const prioInput = document.querySelector("#todo-priority");
+    const prioInput = document.querySelector(".prio-circles");
     const listInput = document.querySelector("#todo-checklist");
     const submitButton = document.querySelector(".todo-submit");
     const closeButton = document.querySelector(".todo-close");
@@ -181,6 +181,37 @@ function editCurrentTodo(todo) {
     dialog.showModal();
 
     setIsDialogOpen(true);
+
+    function priorityHandling() {
+        const prioCircles = prioInput.children;
+
+        for (let j = 0; j < prioCircles.length; j++) {
+            if (prioCircles[j].classList.contains("selected")) {
+                prioCircles[j].classList.remove("selected");
+            }
+        }
+
+        if (todo.priority === 1) {
+            prioCircles[1].classList.add("selected");
+        } else if (todo.priority === 2) {
+            prioCircles[2].classList.add("selected");
+        } else if (todo.priority === 3) {
+            prioCircles[3].classList.add("selected");
+        } else {
+            prioCircles[0].classList.add("selected");
+        }
+
+        for (let i = 0; i < prioCircles.length; i++) {
+            prioCircles[i].addEventListener("click", () => {
+                for (let j = 0; j < prioCircles.length; j++) {
+                    if (prioCircles[j].classList.contains("selected")) {
+                        prioCircles[j].classList.remove("selected");
+                    }
+                }
+                prioCircles[i].classList.add("selected");
+            });
+        }
+    }
 
     function objectToList(object) {
         let string = "";
@@ -196,7 +227,7 @@ function editCurrentTodo(todo) {
     titleInput.value = todo.title;
     descInput.value = todo.description;
     dueInput.value = todo.dueDate;
-    prioInput.value = todo.priority;
+    priorityHandling();
     listInput.value = objectToList(todo.checklist);
 
     submitButton.addEventListener("click", submitted);
@@ -224,11 +255,30 @@ function editCurrentTodo(todo) {
         return preferredFormat;
     }
 
+    function formatPriority() {
+        for (let i = 0; i < prioInput.children.length; i++) {
+            if (prioInput.children[i].classList.contains("selected")) {
+                const color = window.getComputedStyle(prioInput.children[i]).backgroundColor;
+                console.log(prioInput.children[i])
+                console.log(color)
+                if (color === "rgb(42, 157, 143)") {
+                    return 1;
+                } else if (color === "rgb(233, 196, 106)") {
+                    return 2;
+                } else if (color === "rgb(230, 57, 70)") {
+                    return 3;
+                } else {
+                    return 0;
+                }
+            }
+        }
+    }
+
     function submitted() {
         todo.title = titleInput.value;
         todo.description = descInput.value;
         todo.dueDate = formatDate(dueInput.value);
-        todo.priority = isNaN(prioInput.value) ? "" : Number(prioInput.value);
+        todo.priority = formatPriority();
         todo.checklist = listToObject(listInput.value);
 
         pushTodos(currentProject);
@@ -322,8 +372,6 @@ function addNewTodo() {
         for (let i = 0; i < prioInput.children.length; i++) {
             if (prioInput.children[i].classList.contains("selected")) {
                 const color = window.getComputedStyle(prioInput.children[i]).backgroundColor;
-                console.log(prioInput.children[i])
-                console.log(color)
                 if (color === "rgb(42, 157, 143)") {
                     return 1;
                 } else if (color === "rgb(233, 196, 106)") {
