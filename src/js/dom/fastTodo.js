@@ -1,7 +1,6 @@
 import { currentProject } from "./domProjects";
 import { isDialogOpen, pushTodos } from "./domTodos";
 
-
 function fastTodo(e) {
     if (e.key === "a" && e.ctrlKey && !isDialogOpen) {
         e.preventDefault();

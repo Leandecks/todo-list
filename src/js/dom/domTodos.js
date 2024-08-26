@@ -245,22 +245,17 @@ function editCurrentTodo(todo) {
     }
 
     function formatDate(date) {
-        console.log("runnin");
         if (date === "") {
             return;
         }
         const defaultFormat = parse(date, "yyyy-MM-dd", new Date());
-        const preferredFormat = format(defaultFormat, "dd/MM/yyyy");
-        console.log(preferredFormat)
-        return preferredFormat;
+        return format(defaultFormat, "dd/MM/yyyy");
     }
 
     function formatPriority() {
         for (let i = 0; i < prioInput.children.length; i++) {
             if (prioInput.children[i].classList.contains("selected")) {
                 const color = window.getComputedStyle(prioInput.children[i]).backgroundColor;
-                console.log(prioInput.children[i])
-                console.log(color)
                 if (color === "rgb(42, 157, 143)") {
                     return 1;
                 } else if (color === "rgb(233, 196, 106)") {
@@ -389,7 +384,6 @@ function addNewTodo() {
         if (titleInput.value === "") {
             titleInput.value = "New To Do";
         }
-        console.log(formatPriority())
         currentProject.addTodo(
             titleInput.value,
             descInput.value,

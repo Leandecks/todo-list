@@ -1,6 +1,7 @@
 ## To Do list
 
-Eleventh TOP project.
+Eleventh TOP project.   
+To Do List web app with saving and a modern and fast interface.
 
 ### Credits
 

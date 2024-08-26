@@ -6,11 +6,6 @@
     src: url("../fonts/Heroes_Legend_Hollow.ttf");
 }
 
-@font-face {
-    font-family: "Heroes Legend";
-    src: url("../fonts/Heroes_Legend.ttf");
-}
-
 :root {
     --prime: #121420;
     --second: #e0e1dd;
