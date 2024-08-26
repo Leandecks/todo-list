@@ -1,9 +1,8 @@
-@import "https://www.nerdfonts.com/assets/css/webfont.css";
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap');
-
+@import url(https://www.nerdfonts.com/assets/css/webfont.css);
+@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap);
 @font-face {
     font-family: "Heroes Legend Hollow";
-    src: url("../fonts/Heroes_Legend_Hollow.ttf");
+    src: url(8b96380003aa9dff60c4.ttf);
 }
 
 :root {
@@ -301,3 +300,6 @@ dialog .prio-circles {
 .gh-icon:hover {
     transform: rotate(360deg);
 }
+
+
+/*# sourceMappingURL=main.css.map*/
