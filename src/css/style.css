@@ -281,7 +281,7 @@ dialog .prio-circles {
 }
 
 .selected {
-    border: .2rem solid red;
+    border: .15rem solid blue;
 }
 
 #todo-due {
