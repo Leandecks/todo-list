@@ -240,14 +240,15 @@ dialog .buttons {
 }
 
 dialog .prio-circle {
-    width: 2.1rem;
-    height: 2.1rem;
+    width: 1.5rem;
+    height: 1.5rem;
     border-radius: 50%;
 }
 
 dialog .prio-circles {
     display: flex;
     gap: .5rem;
+    margin-right: 1.3rem;
 }
 
 .white {
@@ -264,6 +265,10 @@ dialog .prio-circles {
 
 .red {
     background-color: var(--red);
+}
+
+.selected {
+    border: .2rem solid red;
 }
 
 #todo-due {

@@ -254,7 +254,7 @@ function addNewTodo() {
     const titleInput = document.querySelector("#todo-title");
     const descInput = document.querySelector("#todo-description");
     const dueInput = document.querySelector("#todo-due");
-    const prioInput = document.querySelector("#todo-priority");
+    const prioInput = document.querySelector(".prio-circles");
     const listInput = document.querySelector("#todo-checklist");
     const submitButton = document.querySelector(".todo-submit");
     const closeButton = document.querySelector(".todo-close");
@@ -264,10 +264,33 @@ function addNewTodo() {
 
     isDialogOpen = true;
 
+    function priorityHandling() {
+        const prioCircles = prioInput.children;
+
+        for (let j = 0; j < prioCircles.length; j++) {
+            if (prioCircles[j].classList.contains("selected")) {
+                prioCircles[j].classList.remove("selected");
+            }
+        }
+
+        prioCircles[0].classList.add("selected");
+
+        for (let i = 0; i < prioCircles.length; i++) {
+            prioCircles[i].addEventListener("click", () => {
+                for (let j = 0; j < prioCircles.length; j++) {
+                    if (prioCircles[j].classList.contains("selected")) {
+                        prioCircles[j].classList.remove("selected");
+                    }
+                }
+                prioCircles[i].classList.add("selected");
+            });
+        }
+    }
+
     titleInput.value = "";
     descInput.value = "";
     dueInput.value = "";
-    prioInput.value = "";
+    priorityHandling();
     listInput.value = "";
 
     dialogTitle.textContent = "New To Do";
@@ -295,15 +318,35 @@ function addNewTodo() {
         return format(defaultFormat, "dd/MM/yyyy");
     }
 
+    function formatPriority() {
+        for (let i = 0; i < prioInput.children.length; i++) {
+            if (prioInput.children[i].classList.contains("selected")) {
+                const color = window.getComputedStyle(prioInput.children[i]).backgroundColor;
+                console.log(prioInput.children[i])
+                console.log(color)
+                if (color === "rgb(42, 157, 143)") {
+                    return 1;
+                } else if (color === "rgb(233, 196, 106)") {
+                    return 2;
+                } else if (color === "rgb(230, 57, 70)") {
+                    return 3;
+                } else {
+                    return 0;
+                }
+            }
+        }
+    }
+
     function submitted() {
         if (titleInput.value === "") {
             titleInput.value = "New To Do";
         }
+        console.log(formatPriority())
         currentProject.addTodo(
             titleInput.value,
             descInput.value,
             formatDate(dueInput.value),
-            isNaN(prioInput.value) ? "" : Number(prioInput.value),
+            formatPriority(),
             formatListInput(listInput.value)
         );
         pushTodos(currentProject);
