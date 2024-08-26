@@ -13,6 +13,7 @@
     --green: #2a9d8f;
     --yellow: #e9c46a;
     --red: #e63946;
+    --transparent: rgba(0, 0, 0, 0.8);
 }
 
 ::selection {
@@ -73,12 +74,29 @@ body {
     display: flex;
     flex-direction: column;
     gap: .8rem;
+    overflow: scroll;
 }
 
 .sidebar .projects > div {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.infos {
+    position: absolute;
+    background-color: var(--second);
+    color: var(--prime);
+    padding: 1.25rem 2.05rem;
+    font-size: 1.2rem;
+    bottom: 7rem;
+    left: 1rem;
+}
+
+span.code {
+    background-color: var(--bg);
+    padding: .25rem .4rem;
+    color: var(--second);
 }
 
 .addProjectBtn {
@@ -178,7 +196,7 @@ dialog {
     margin: auto;
     padding: 1rem;
     border: none;
-    background: rgba(0, 0, 0, 0.8);
+    background: var(--transparent);
     color: var(--second);
     font-size: 1.1rem;
 }
